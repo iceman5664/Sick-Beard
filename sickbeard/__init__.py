@@ -667,7 +667,8 @@ def initialize(consoleLogging=True):
         showUpdateScheduler = scheduler.Scheduler(showUpdaterInstance,
                                                cycleTime=showUpdaterInstance.updateInterval,
                                                threadName="SHOWUPDATER",
-                                               runImmediately=False)
+                                               runImmediately=False,
+                                               silent=True)
 
         versionCheckScheduler = scheduler.Scheduler(versionChecker.CheckVersion(),
                                                      cycleTime=datetime.timedelta(hours=12),
@@ -688,12 +689,14 @@ def initialize(consoleLogging=True):
         properFinderScheduler = scheduler.Scheduler(properFinderInstance,
                                                      cycleTime=properFinderInstance.updateInterval,
                                                      threadName="FINDPROPERS",
-                                                     runImmediately=False)
+                                                     runImmediately=False,
+                                                     silent=True)
 
         autoPostProcesserScheduler = scheduler.Scheduler(autoPostProcesser.PostProcesser(),
                                                      cycleTime=datetime.timedelta(minutes=10),
                                                      threadName="POSTPROCESSER",
-                                                     runImmediately=True)
+                                                     runImmediately=True,
+                                                     silent=True)
 
         backlogSearchScheduler = searchBacklog.BacklogSearchScheduler(searchBacklog.BacklogSearcher(),
                                                                       cycleTime=datetime.timedelta(minutes=get_backlog_cycle_time()),

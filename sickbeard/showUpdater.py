@@ -35,8 +35,6 @@ class ShowUpdater():
         # update at 3 AM
         updateTime = datetime.time(hour=3)
 
-        logger.log(u"Checking update interval", logger.DEBUG)
-
         hourDiff = datetime.datetime.today().time().hour - updateTime.hour
 
         # if it's less than an interval after the update time then do an update (or if we're forcing it)
